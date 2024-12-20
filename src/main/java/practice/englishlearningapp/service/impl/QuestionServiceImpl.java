@@ -15,10 +15,6 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
     @Autowired
     private QuestionMapper questionMapper;
 
-    public Question getQuestionById(long id) {
-        return questionMapper.selectById(id);
-    }
-
     public List<Question> getQuestionsByQuantity(int quantity) {
         LambdaQueryWrapper<Question> queryWrapper = new LambdaQueryWrapper<>();
             return questionMapper.selectList(queryWrapper.last("LIMIT " + quantity));
