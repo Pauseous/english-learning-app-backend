@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.0'
 	id 'io.spring.dependency-management' version '1.1.6'
+	id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group = 'practice.englishlearningapp'
@@ -33,6 +34,16 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
+shadowJar {
+	archiveClassifier.set('all') // 打包文件名的后缀，例如 `your-project-all.jar`
+	manifest {
+		attributes(
+				'Main-Class': 'practice.englishlearningapp.EnglishLearningAppApplication' // 主类
+		)
+	}
+}
+
 
 tasks.named('test') {
 	useJUnitPlatform()
